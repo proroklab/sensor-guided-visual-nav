@@ -1,0 +1,44 @@
+# lightning.pytorch==2.0.9
+seed_everything: true
+trainer:
+  accelerator: auto
+  logger: False
+  callbacks: null
+  max_epochs: 500
+  log_every_n_steps: 10
+  detect_anomaly: True
+  #precision: bf16
+model:
+  model:
+    class_path: src.training.models.model_gnn.ModelGNNAStarVAE
+    init_args:
+      comm_range: 10.0 # 3.0
+      gnn_in_channels: 32
+      gnn_out_channels: 128
+      enc_out_layer: -6
+      enc_trainable_layers: 2
+      beta: 100
+      enc_class_weights:
+        - 1 # ground
+        - 1 # wall
+        - 10 # target
+        - 5 # sensors
+  learning_rate: 0.001
+  weight_decay: 0.00
+  scheduler_gamma: 0.98
+data:
+  data_path: dataset_40k_navigatable_v2
+  data_type: polar
+  batch_size: 64
+  num_workers: 8
+  split_fractions:
+    train:
+      - 0.0
+      - 0.8
+    eval:
+      - 0.8
+      - 0.99
+    test:
+      - 0.99
+      - 1.0
+ckpt_path: null

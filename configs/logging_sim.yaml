@@ -1,0 +1,17 @@
+# lightning.pytorch==2.0.9
+trainer:
+  logger:
+    class_path: lightning.pytorch.loggers.WandbLogger
+    init_args:
+      project: visual_nav_vae
+      log_model: all
+  callbacks:
+    - class_path: lightning.pytorch.callbacks.LearningRateMonitor
+    - class_path: lightning.pytorch.callbacks.ModelCheckpoint
+      init_args:
+        save_top_k: 1
+        filename: '{epoch}-{step}-{validation_loss:.3f}'
+        monitor: nav_loss
+        mode: min
+        save_last: True
+  log_every_n_steps: 10

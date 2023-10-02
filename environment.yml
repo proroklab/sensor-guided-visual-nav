@@ -1,0 +1,23 @@
+name: sensor-guided-visual-nav
+channels:
+  - pytorch
+  - pyg
+  - nvidia
+dependencies:
+  - python=3.10
+  - pytorch=2.0.1
+  - torchvision=0.15.2
+  - pytorch-cuda=11.8
+  - pyg=2.3.1
+  - pytorch-cluster=1.6.1
+  - pip:
+    - lightning[pytorch-extra]==2.0.9
+    - numpy==1.26.0
+    - pillow==10.0.1
+    - scipy==1.11.3
+    - pandas==1.5.3
+    - matplotlib==3.8.0
+    - opencv-python==4.8.1.78
+    - pyvisgraph==0.2.1
+    - shapely==1.8.5.post1
+    - wandb==0.15.11
