@@ -1,4 +1,5 @@
-Repository containing the code base for training the multi-agent coordination policy used in the paper "[A Framework for Real-World Multi-Robot Systems Running Decentralized GNN-Based Policies](https://arxiv.org/abs/2111.01777)".
+# Sensor-Guided Visual Navigation
+Repository containing the code base for training the multi-agent coordination policy used in the paper "[See What the Robot Can’t See: Learning Cooperative Perception for Visual Navigation](https://arxiv.org/abs/2208.00759)".
 
 Supplementary video material:
 
