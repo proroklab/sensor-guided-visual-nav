@@ -30,7 +30,7 @@ WIP.
 ## Train with simulation data
 Start training by running from the root of this repository:
 ```
-python3 -m train_sim fit --config configs/sim.yaml --config configs/logging_sim.yaml
+python3 -m train_sim fit --config configs/sim.yaml --data.data_path <path/to/extracted/sim/dataset/folder> --config configs/logging_sim.yaml
 ```
 Optionally, if you wish to run without logging, remove the second `config` argument. When using logging, the model artifact will be uploaded to wandb.
 
@@ -50,6 +50,6 @@ WIP. The link to the dataset will be provided.
 ## Train Sim-to-Real
 Start training by running from the root of this repository:
 ```
-python3 -m train_sim2real fit --config configs/sim2real.yaml --model.model_checkpoint <model checkpoint> --config configs/logging_sim2real.yaml
+python3 -m train_sim2real fit --config configs/sim2real.yaml --model.model_checkpoint <model checkpoint> --data.data_path <path/to/extracted/sim2real/dataset/folder> --config configs/logging_sim2real.yaml
 ```
 Optionally, if you wish to run without logging, remove the second `config` argument. When using logging, the model artifact will be uploaded to wandb.

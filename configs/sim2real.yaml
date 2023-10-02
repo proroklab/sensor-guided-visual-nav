@@ -27,7 +27,6 @@ model:
   weight_decay: 0.00
   scheduler_gamma: 0.98
 data:
-  data_path: dataset_real2sim_v7_filt
   batch_size: 64
   num_workers: 8
   split_fractions:

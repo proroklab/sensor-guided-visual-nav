@@ -27,7 +27,6 @@ model:
   weight_decay: 0.00
   scheduler_gamma: 0.98
 data:
-  data_path: dataset_40k_navigatable_v2
   data_type: polar
   batch_size: 64
   num_workers: 8
