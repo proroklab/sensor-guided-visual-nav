@@ -66,10 +66,7 @@ class Sim2RealDataset(Dataset):
                     ):
                         break
                     sensor = sim_file.parent.parent.stem
-                    if sensor == "sensor_0":
-                        sim_shift = 168
-                    else:
-                        sim_shift = 0
+                    sim_shift = 0
                     # idx = int(sim_file.stem)
                     sample_files.append(
                         {
