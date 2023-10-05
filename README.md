@@ -19,14 +19,28 @@ If you use any part of this code in your research, please cite our paper:
 ```
 
 ## Setup
-Install conda and configure to use with (Libmamba)[https://www.anaconda.com/blog/a-faster-conda-for-a-growing-community]. Then run `conda env create -f environment.yml` to install the dependencies. Activate the environment as instructed.
+Install conda and configure to use with [Libmamba](https://www.anaconda.com/blog/a-faster-conda-for-a-growing-community). Then run `conda env create -f environment.yml` to install the dependencies. Activate the environment as instructed.
+
+### Webots Docker
+Run from root:
+```
+./src/dataset_util/docker/docker_build.sh
+```
 
 ## Simulation Dataset
 ### Pre-generated dataset
 WIP. The link to the dataset will be provided.
 
 ### Generate dataset using Webots and Docker
-WIP.
+The first step is to generate random environment layouts according to the specified configuration file. The `generate_dataset` script takes as input the desired path to the dataset as well as the number of samples:
+The next step is to compute the cost-to-go labels with the `compute_cost_to_goal`, which generates `n_paths` cost to goal labels in a circular pattern around each sensor position. This is an expensive task and depending on the environment configuration and size, it can take a long time to completion. Both scripts can be sped up with the `n_workers` argument. The `visualize_dataset` dataset can be used to verify successful dataset generation by visualizing dataset samples.
+
+```
+python3 -m src.dataset_util.src.generate_dataset_meta <path/to/dataset> <number of samples> --n_workers <number of processes>
+python3 -m src.dataset_util.src.visualize_dataset <path/to/dataset> <sample index> <filename_a.pdf> # Optional
+python3 -m src.dataset_util.src.compute_cost_to_goal <path/to/dataset> --path_start_dist <distance in meter> --n_workers <number of processes> --n_paths <number of paths>
+python3 -m src.dataset_util.src.visualize_dataset <path/to/dataset> <sample index> <filename_b.pdf> # Optional
+```
 
 ## Train with simulation data
 Start training by running from the root of this repository:
@@ -43,6 +57,12 @@ WIP. The link to the pre-trained models will be provided.
 Find the run id from Wandb (this is a cryptic string and not the run name displayed). Run `python3 util/wandb_download_best_model.py <wandb group name> <run id>`.
 
 ## Evaluate in Simulation
+### Plain advantage estimation
+Run validation by running from the root of this repository:
+```
+python3 -m train_sim validate --config configs/sim.yaml --data.data_path dataset_40k_navigatable_v2 --ckpt_path <model checkpoint>
+```
+### Sequential evaluation in Webots
 WIP.
 
 ## Sim-to-Real Dataset
