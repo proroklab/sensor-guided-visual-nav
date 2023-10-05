@@ -1,0 +1,50 @@
+#VRML_SIM R2023a utf8
+PROTO Sensor [
+  field SFVec3f    translation    0 0 0
+  field SFRotation rotation       0 0 1 0
+  field SFString   name           "sensor"
+  field MFString   port           ""
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    name IS name
+    controllerArgs IS port
+    children [
+      Transform {
+        translation 0 0 0.05
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColorMap ImageTexture {
+                url ["textures/sensor.png"]
+              }
+              metalness 0
+              roughness 0.4
+            }
+            geometry DEF BODY Box {
+              size 0.1 0.1 0.1
+            }
+          }
+        ]
+      }
+      Camera {
+        translation 0.0 0 0.3
+        rotation 0 1 0 1.57
+        name "camera0"
+        projection "spherical"
+        fieldOfView 3.14
+        width 336
+        height 336
+      }
+    ]
+    boundingObject Transform {
+      translation 0 0 0.05
+      children [
+        USE BODY
+      ]
+    }
+    controller "sensor"
+  }
+}

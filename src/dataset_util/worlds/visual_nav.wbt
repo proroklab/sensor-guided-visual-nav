@@ -1,0 +1,46 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+IMPORTABLE EXTERNPROTO "../protos/RoboMaster.proto"
+IMPORTABLE EXTERNPROTO "../protos/Sensor.proto"
+IMPORTABLE EXTERNPROTO "../protos/Target.proto"
+IMPORTABLE EXTERNPROTO "../protos/CardboardBox.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.3674639820333234 0.5543203089818184 0.7467926197804279 1.451935306855485
+  position -3.8732729033554296 -6.84461200574726 10.611455661745639
+}
+TexturedBackground {
+  texture "empty_office"
+  luminosity 4
+  skybox FALSE
+}
+TexturedBackgroundLight {
+  texture "empty_office"
+  luminosity 20
+  castShadows FALSE
+}
+Robot {
+  name "supervisor"
+  controller "<extern>"
+  supervisor TRUE
+}
+DEF environment Transform {
+  children [
+    Floor {
+      size 50 50
+      tileSize 0.05 0.05
+      appearance Appearance {
+        texture ImageTexture {
+          url ["textures/floor.png"]
+        }
+      }
+    }
+    DEF obstacles Transform {
+    }
+  ]
+}

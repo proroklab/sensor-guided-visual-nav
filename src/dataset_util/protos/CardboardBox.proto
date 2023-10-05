@@ -1,0 +1,25 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/solids/protos/SolidBox.proto"
+
+PROTO CardboardBox [
+  field SFVec3f    translation  0 0 0
+  field SFRotation rotation     0 0 1 0
+  field SFVec3f    size         0.7 0.5 0.5
+  field SFString   name         "box"
+]
+{
+  SolidBox {
+    translation IS translation
+    rotation IS rotation
+    size IS size
+    name IS name
+    appearance PBRAppearance {
+      baseColorMap ImageTexture {
+        url ["textures/cardboard.png"]
+      }
+      metalness 0
+      roughness 0.75
+    }
+  }
+}
